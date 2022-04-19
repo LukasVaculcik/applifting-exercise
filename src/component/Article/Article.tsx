@@ -1,12 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function Article() {
-  return (
-    <article className="App">
-      
-        
-    </article>
-  );
+  return <article className="App"></article>;
 }
 
 export default Article;
