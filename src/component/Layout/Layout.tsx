@@ -1,9 +1,6 @@
 import React from "react";
 import PageHeader from "../PageHeader/PageHeader";
-
-interface Props {
-  children: React.ReactNode;
-}
+import { Props } from "../../types";
 
 export default function Layout(props: Props) {
   return (
