@@ -1,5 +1,5 @@
 import { useState } from "react"
 
-export default function LoginPage() {
+export default function About() {
     return <div>About info</div>
 }

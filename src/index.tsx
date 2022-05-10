@@ -4,33 +4,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import store from "./store"
 import { Provider } from "react-redux"
 import "./index.css"
-import HomePage from "./page/HomePage"
-import ArticleDetailPage from "./page/ArticleDetailPage"
-import AboutPage from "./page/AboutPage"
-import LoginPage from "./page/LoginPage"
+import Home from "./page/Home"
+import ArticleDetail from "./page/ArticleDetail"
+import About from "./page/About"
+import Login from "./page/Login"
+import NoPage from "./page/NoPage"
 import reportWebVitals from "./reportWebVitals"
-import Layout from "./component/Layout/Layout"
+import PageLayout from "./component/PageLayout/PageLayout"
 
-// After
 const container = document.getElementById("root")
 const root = createRoot(container!)
 
 root.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Layout>
-                <Routes>
-                    <Route path="/">
-                        <HomePage />
-                    </Route>
-                    <Route path="about">
-                        <AboutPage />
-                    </Route>
-                    <Route path="login">
-                        <LoginPage />
-                    </Route>
-                </Routes>
-            </Layout>
+            <Routes>
+                <Route path="/" element={<PageLayout />}>
+                    <Route index element={<Home />} />
+                    <Route
+                        path="article/:articleId"
+                        element={<ArticleDetail />}
+                    />
+                    <Route path="about" element={<About />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="*" element={<NoPage />} />
+                </Route>
+            </Routes>
         </BrowserRouter>
     </Provider>
 )

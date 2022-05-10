@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function ArticleDetailPage() {
+export default function ArticleDetail() {
     const names = ["yo"]
     const [likes, setLikes] = useState(0)
 
