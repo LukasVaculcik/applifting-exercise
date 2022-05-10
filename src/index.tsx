@@ -4,13 +4,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import store from "./store"
 import { Provider } from "react-redux"
 import "./index.css"
-import Home from "./page/Home"
-import ArticleDetail from "./page/ArticleDetail"
-import About from "./page/About"
-import Login from "./page/Login"
-import NoPage from "./page/NoPage"
+import Home from "./pageFront/Home"
+import ArticleDetail from "./pageFront/ArticleDetail"
+import About from "./pageFront/About"
+import Login from "./pageFront/Login"
+import NoPage from "./pageFront/NoPage"
 import reportWebVitals from "./reportWebVitals"
 import PageLayout from "./component/PageLayout/PageLayout"
+import ArticleList from "./pageAdmin/ArticleList"
+import ArticleEdit from "./pageAdmin/ArticleEdit"
 
 const container = document.getElementById("root")
 const root = createRoot(container!)
@@ -26,7 +28,13 @@ root.render(
                         element={<ArticleDetail />}
                     />
                     <Route path="about" element={<About />} />
-                    <Route path="login" element={<Login />} />
+                    <Route path="admin" element={<Login />}>
+                        <Route index element={<ArticleList />} />
+                        <Route
+                            path="edit/:articleId"
+                            element={<ArticleEdit />}
+                        />
+                    </Route>
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>
