@@ -6,7 +6,7 @@ export default function Navigation() {
         <nav className="flex gap-4">
             <Link to="/">Recent articles</Link>
             <Link to="/about">About</Link>
-            <Link to="/login">Log in</Link>
+            <Link to="/admin">Log in</Link>
         </nav>
     )
 }
