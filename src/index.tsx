@@ -10,7 +10,7 @@ import About from "./page/About"
 import Login from "./page/Login"
 import NoPage from "./page/NoPage"
 import reportWebVitals from "./reportWebVitals"
-import PageLayout from "./component/PageLayout/PageLayout"
+import PageLayout from "./component/PageLayout"
 import ArticleList from "./page/ArticleList"
 import ArticleEdit from "./page/ArticleEdit"
 

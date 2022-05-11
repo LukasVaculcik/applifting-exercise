@@ -3,20 +3,34 @@ export interface Props {
 }
 
 export interface Article {
-    id: number
-    datetime: Date
-    author: string
+    articleId: string
     title: string
     perex: string
-    text: string
-    slug: string
-    image: string
+    imageId: string
+    createdAt: string
+    lastUpdatedAt: string
 }
 
-export interface Comment {
+export interface ArticleInfoProps {
+    author: string
+    datetime: Date
+}
+
+export interface CommentProps {
     id: number
     parent_id: number
     datetime: Date
     author: string
     text: string
+}
+
+export interface NavigationLinkProps {
+    link: string
+    text: string
+}
+
+export interface IconProps {
+    id: string
+    width?: number
+    height?: number
 }

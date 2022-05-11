@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { Comment } from "../types"
+import { CommentProps } from "../types"
 
 export function commentReducer() {
     return []
