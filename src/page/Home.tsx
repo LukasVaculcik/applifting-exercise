@@ -1,6 +1,5 @@
 import ArticleCard from "../component/ArticleCard"
 import { Article } from "../types"
-// import { getArticles } from "../reducer/ArticleReducer"
 
 const mockArticle: Article = {
     articleId: "1",

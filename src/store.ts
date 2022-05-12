@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { articleReducer } from "./reducer/ArticleReducer"
+import ArticleReducer from "./reducer/ArticleReducer"
 
 const store = configureStore({
     reducer: {
-        article: articleReducer,
+        article: ArticleReducer,
     },
 })
 
