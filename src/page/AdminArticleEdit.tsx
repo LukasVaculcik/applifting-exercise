@@ -1,3 +1,11 @@
+import ArticleForm from "../component/ArticleForm"
+
 export default function AdminArticleEdit() {
-    return <div>edit article</div>
+    return (
+        <main>
+            <section className="container-lg">
+                <ArticleForm />
+            </section>
+        </main>
+    )
 }

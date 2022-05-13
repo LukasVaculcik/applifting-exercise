@@ -28,8 +28,13 @@ root.render(
                         element={<ArticleDetail />}
                     />
                     <Route path="about" element={<About />} />
-                    <Route path="admin" element={<AdminLogin />}>
-                        <Route index element={<AdminArticleList />} />
+                    <Route path="admin">
+                        <Route path="login" element={<AdminLogin />} />
+                        <Route
+                            path="article-list"
+                            element={<AdminArticleList />}
+                        />
+                        <Route path="create" element={<AdminArticleEdit />} />
                         <Route
                             path="edit/:articleId"
                             element={<AdminArticleEdit />}

@@ -15,10 +15,16 @@ const axiosApi = axios.create({
 // Request interceptor for API calls
 axiosApi.interceptors.request.use(
     async (config) => {
-        const accessToken =
-            window.localStorage.getItem("accessToken") ??
-            (await fetchAccessToken())
-        axios.defaults.headers.common.Authorization = accessToken
+        let accessToken = window.localStorage.getItem("accessToken") ?? ""
+        if (!accessToken) {
+            fetchAccessToken()
+            accessToken = window.localStorage.getItem("accessToken") ?? ""
+        }
+        console.log(accessToken)
+        // axios.defaults.headers.common.Authorization = accessToken
+        config.headers = config.headers ?? {}
+        config.headers.Authorization = accessToken
+        console.log(config.headers)
         return config
     },
     (error) => {
@@ -32,50 +38,36 @@ axiosApi.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config
         console.log(error)
-        if (error.response.status === 401 && !originalRequest._retry) {
+        if (error.response.status === 403 && !originalRequest._retry) {
             originalRequest._retry = true
-            const accessToken = await fetchAccessToken()
-            axios.defaults.headers.common.Authorization = accessToken
+            let accessToken = window.localStorage.getItem("accessToken") ?? ""
+            if (!accessToken) {
+                fetchAccessToken()
+                accessToken = window.localStorage.getItem("accessToken") ?? ""
+            }
+            // axios.defaults.headers.common.Authorization = accessToken
+            originalRequest.headers = originalRequest.headers ?? {}
+            originalRequest.headers.Authorization = accessToken
             return axiosApi(originalRequest)
         }
         return Promise.reject(error)
     }
 )
 
-export async function fetchAccessToken() {
-    try {
-        const response = await axiosApi.post("/login", {
+export function fetchAccessToken() {
+    axiosApi
+        .post("/login", {
             username: userName,
             password: userPassword,
         })
-        window.localStorage.setItem("accessToken", response.data.access_token)
-
-        console.log(response)
-        return response.data.access_token
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export async function fetchApiKey() {
-    try {
-        const response = await axiosApi.post("/tenants", {
-            name: userName,
-            password: userPassword,
+        .then((response) => {
+            window.localStorage.setItem(
+                "accessToken",
+                response.data.access_token
+            )
+            return response.data.access_token
         })
-        console.log(response)
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export async function fetchAllArticles() {
-    try {
-        const response = await axiosApi.get("/articles")
-        console.log(response)
-    } catch (error) {
-        console.log(error)
-    }
+        .catch((error) => console.log(error))
 }
 
 // apikey: "a6f4eb67-7420-4182-84d3-26131509b08d"

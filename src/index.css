@@ -19,6 +19,16 @@ svg {
     @apply fill-current;
 }
 
+input[type="text"],
+textarea {
+    @apply border border-gray-200 rounded-md p-4;
+}
+
+input[type="submit"],
+input[type="file"] {
+    @apply cursor-pointer;
+}
+
 #root {
     @apply pt-32;
 }

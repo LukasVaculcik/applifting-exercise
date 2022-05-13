@@ -5,7 +5,7 @@ export default function AdminNavigation() {
     return (
         <nav className="ml-auto">
             <Link
-                to="/admin"
+                to="/admin/login"
                 className="textstyle-label text-blue-400 hover:underline flex gap-2 items-center"
             >
                 <span>Log in</span>
