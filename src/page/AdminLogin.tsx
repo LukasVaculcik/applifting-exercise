@@ -1,5 +1,5 @@
 import { useState } from "react"
 
-export default function Login() {
+export default function AdminLogin() {
     return <div>Login form</div>
 }
