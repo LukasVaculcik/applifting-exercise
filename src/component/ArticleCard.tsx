@@ -20,7 +20,7 @@ export default function ArticleCard({
                 <h2 className="textstyle-head-2 text-black-400">{title}</h2>
                 <ArticleInfo
                     author="name of the author here"
-                    datetime={new Date()}
+                    datetime={new Date(createdAt)}
                 />
                 <p>{perex}</p>
                 <div className="flex gap-4 items-center">

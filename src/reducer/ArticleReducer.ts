@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 export const ArticleReducer = createSlice({
-    name: "article",
+    name: "articles",
     initialState: {
-        articles: [],
+        items: [],
     },
     reducers: {
-        fetchAllArticles: (state, action) => {
-            state.articles = action.payload
+        setArticles: (state, action) => {
+            state.items = action.payload.items
         },
     },
 })
 
-export const { fetchAllArticles } = ArticleReducer.actions
+export const { setArticles } = ArticleReducer.actions
 export default ArticleReducer.reducer
 
 // Usage

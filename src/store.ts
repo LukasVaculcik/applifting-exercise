@@ -3,7 +3,7 @@ import ArticleReducer from "./reducer/ArticleReducer"
 
 const store = configureStore({
     reducer: {
-        article: ArticleReducer,
+        articles: ArticleReducer,
     },
 })
 

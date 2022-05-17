@@ -20,11 +20,10 @@ axiosApi.interceptors.request.use(
             fetchAccessToken()
             accessToken = window.localStorage.getItem("accessToken") ?? ""
         }
-        console.log(accessToken)
-        // axios.defaults.headers.common.Authorization = accessToken
+        // console.log(accessToken)
         config.headers = config.headers ?? {}
         config.headers.Authorization = accessToken
-        console.log(config.headers)
+        // console.log(config.headers)
         return config
     },
     (error) => {
@@ -37,7 +36,7 @@ axiosApi.interceptors.response.use(
     (response) => response,
     async (error) => {
         const originalRequest = error.config
-        console.log(error)
+        // console.log(error)
         if (error.response.status === 403 && !originalRequest._retry) {
             originalRequest._retry = true
             let accessToken = window.localStorage.getItem("accessToken") ?? ""
@@ -45,7 +44,6 @@ axiosApi.interceptors.response.use(
                 fetchAccessToken()
                 accessToken = window.localStorage.getItem("accessToken") ?? ""
             }
-            // axios.defaults.headers.common.Authorization = accessToken
             originalRequest.headers = originalRequest.headers ?? {}
             originalRequest.headers.Authorization = accessToken
             return axiosApi(originalRequest)

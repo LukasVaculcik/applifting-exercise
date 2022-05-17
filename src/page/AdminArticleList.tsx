@@ -1,9 +1,20 @@
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
+import ArticlesDataTable from "../component/ArticlesDataTable"
+import { useAppDispatch, useAppSelector } from "../hooks"
+import { setArticles } from "../reducer/ArticleReducer"
 import { fetchAllArticles } from "../service/ArticleService"
 
 export default function AdminArticleList() {
-    const articles = fetchAllArticles()
-    console.log(articles)
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        fetchAllArticles().then((articles) => {
+            dispatch(setArticles(articles))
+        })
+    }, [])
+
+    const articles = useAppSelector((state) => state.articles)
+    // console.log(articles)
 
     return (
         <main>
@@ -17,6 +28,8 @@ export default function AdminArticleList() {
                         Create new article
                     </Link>
                 </div>
+
+                <ArticlesDataTable />
             </section>
         </main>
     )
