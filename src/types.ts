@@ -34,3 +34,15 @@ export interface IconProps {
     width?: number
     height?: number
 }
+
+export interface ArticlesDataTableProps {
+    data: Article[]
+}
+
+export interface ArticlesDataTableActionsProps {
+    articleId: string
+}
+
+export interface ArticleFormProps {
+    articleId: string | undefined
+}

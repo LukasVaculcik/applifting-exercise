@@ -30,15 +30,17 @@ root.render(
                     <Route path="about" element={<About />} />
                     <Route path="admin">
                         <Route path="login" element={<AdminLogin />} />
-                        <Route
-                            path="article-list"
-                            element={<AdminArticleList />}
-                        />
-                        <Route path="create" element={<AdminArticleEdit />} />
-                        <Route
-                            path="edit/:articleId"
-                            element={<AdminArticleEdit />}
-                        />
+                        <Route path="articles">
+                            <Route index element={<AdminArticleList />} />
+                            <Route
+                                path="create"
+                                element={<AdminArticleEdit />}
+                            />
+                            <Route
+                                path=":articleId"
+                                element={<AdminArticleEdit />}
+                            />
+                        </Route>
                     </Route>
                     <Route path="*" element={<NoPage />} />
                 </Route>

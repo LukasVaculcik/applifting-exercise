@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { Article } from "../types"
 
 export const ArticleReducer = createSlice({
     name: "articles",
@@ -9,10 +10,15 @@ export const ArticleReducer = createSlice({
         setArticles: (state, action) => {
             state.items = action.payload.items
         },
+        removeArticle: (state, action) => {
+            state.items = state.items.filter(
+                (article: Article) => article.articleId !== action.payload
+            )
+        },
     },
 })
 
-export const { setArticles } = ArticleReducer.actions
+export const { setArticles, removeArticle } = ArticleReducer.actions
 export default ArticleReducer.reducer
 
 // Usage

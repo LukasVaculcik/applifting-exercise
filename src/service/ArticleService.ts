@@ -8,8 +8,15 @@ export function fetchAllArticles() {
 }
 
 export function createArticle(data: any) {
-    axiosApi
+    return axiosApi
         .post("/articles", data)
         .then((response) => response.data)
+        .catch((error) => console.log(error))
+}
+
+export function deleteArticle(articleId: string) {
+    return axiosApi
+        .delete(`/articles/${articleId}`)
+        .then((response) => response)
         .catch((error) => console.log(error))
 }

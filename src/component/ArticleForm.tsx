@@ -1,23 +1,26 @@
+import { useNavigate } from "react-router-dom"
 import { v1 as uuidv1 } from "uuid"
 import { createArticle } from "../service/ArticleService"
-import { Article } from "../types"
+import { ArticleFormProps } from "../types"
 
-const handleSubmit = (event: any) => {
-    event.preventDefault()
-    const date = new Date().toUTCString()
-    const data = {
-        articleId: uuidv1(),
-        title: event.target.title.value,
-        perex: event.target.perex.value,
-        createdAt: date,
-        lastUpdatedAt: date,
+export default function ArticleForm({ articleId }: ArticleFormProps) {
+    const navigate = useNavigate()
+    const handleSubmit = (event: any) => {
+        event.preventDefault()
+        const date = new Date().toUTCString()
+        const data = {
+            articleId: uuidv1(),
+            title: event.target.title.value,
+            perex: event.target.perex.value,
+            createdAt: date,
+            lastUpdatedAt: date,
+        }
+        // console.log(data)
+        createArticle(data).then(() => {
+            navigate("/admin/article-list")
+        })
     }
-    console.log(data)
 
-    createArticle(data)
-}
-
-export default function ArticleForm() {
     return (
         <form onSubmit={handleSubmit}>
             <div className="flex gap-8 items-center mb-16">
