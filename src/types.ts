@@ -44,7 +44,7 @@ export interface ArticlesDataTableActionsProps {
 }
 
 export interface ArticleFormProps {
-    articleId: string | undefined
+    article: Article | undefined
 }
 
 export interface ArticleBodyProps {

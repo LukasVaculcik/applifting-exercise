@@ -1,24 +1,37 @@
 import { useNavigate } from "react-router-dom"
 import { v1 as uuidv1 } from "uuid"
-import { createArticle } from "../service/ArticleService"
+import { createArticle, updateArticle } from "../service/ArticleService"
 import { ArticleFormProps } from "../types"
 
-export default function ArticleForm({ articleId }: ArticleFormProps) {
+export default function ArticleForm({ article }: ArticleFormProps) {
     const navigate = useNavigate()
     const handleSubmit = (event: any) => {
         event.preventDefault()
-        const date = new Date().toUTCString()
-        const data = {
-            articleId: uuidv1(),
-            title: event.target.title.value,
-            perex: event.target.perex.value,
-            createdAt: date,
-            lastUpdatedAt: date,
+        if (article) {
+            const dateUpdated = new Date().toUTCString()
+            const data = {
+                articleId: article.articleId,
+                title: event.target.title.value,
+                perex: event.target.perex.value,
+                createdAt: article.createdAt,
+                lastUpdatedAt: dateUpdated,
+            }
+            updateArticle(data).then(() => {
+                navigate("/admin/articles")
+            })
+        } else {
+            const dateCreated = new Date().toUTCString()
+            const data = {
+                articleId: uuidv1(),
+                title: event.target.title.value,
+                perex: event.target.perex.value,
+                createdAt: dateCreated,
+                lastUpdatedAt: dateCreated,
+            }
+            createArticle(data).then(() => {
+                navigate("/admin/articles")
+            })
         }
-        // console.log(data)
-        createArticle(data).then(() => {
-            navigate("/admin/articles")
-        })
     }
 
     return (
@@ -36,7 +49,12 @@ export default function ArticleForm({ articleId }: ArticleFormProps) {
                     <label htmlFor="title" className="text-black">
                         Article title
                     </label>
-                    <input type="text" id="title" name="title" />
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        defaultValue={article ? article.title : ""}
+                    />
                 </div>
 
                 <div className="flex flex-col gap-2">
@@ -60,6 +78,7 @@ export default function ArticleForm({ articleId }: ArticleFormProps) {
                         name="perex"
                         id="perex"
                         className="min-h-64"
+                        defaultValue={article ? article.perex : ""}
                     ></textarea>
                 </div>
             </div>

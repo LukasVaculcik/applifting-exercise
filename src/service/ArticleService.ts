@@ -14,6 +14,13 @@ export function createArticle(data: any) {
         .catch((error) => console.log(error))
 }
 
+export function updateArticle(data: any) {
+    return axiosApi
+        .patch(`/articles/${data.articleId}`, data)
+        .then((response) => response.data)
+        .catch((error) => console.log(error))
+}
+
 export function deleteArticle(articleId: string) {
     return axiosApi
         .delete(`/articles/${articleId}`)
