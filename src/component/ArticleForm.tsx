@@ -17,7 +17,7 @@ export default function ArticleForm({ articleId }: ArticleFormProps) {
         }
         // console.log(data)
         createArticle(data).then(() => {
-            navigate("/admin/article-list")
+            navigate("/admin/articles")
         })
     }
 

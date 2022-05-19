@@ -79,6 +79,9 @@ module.exports = {
                 400: "#007BFF",
                 500: "#005cbf",
             },
+            red: {
+                DEFAULT: "#ff0000",
+            },
         },
         container: false,
     },

@@ -20,6 +20,7 @@ svg {
 }
 
 input[type="text"],
+input[type="email"],
 textarea {
     @apply border border-gray-200 rounded-md p-4;
 }
