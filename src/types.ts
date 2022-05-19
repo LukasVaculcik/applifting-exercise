@@ -58,3 +58,7 @@ export interface ArticleCardSimpleProps {
 export interface ArticleCardProps {
     article: Article
 }
+
+export interface ProtectedRouteProps {
+    children: JSX.Element
+}

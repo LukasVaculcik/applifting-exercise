@@ -13,6 +13,7 @@ import AdminLogin from "./page/AdminLogin"
 import AdminArticleList from "./page/AdminArticleList"
 import AdminArticleEdit from "./page/AdminArticleEdit"
 import PageLayout from "./component/PageLayout"
+import ProtectedRoute from "./component/ProtectedRoute"
 
 const container = document.getElementById("root")
 const root = createRoot(container!)
@@ -31,14 +32,29 @@ root.render(
                     <Route path="admin">
                         <Route path="login" element={<AdminLogin />} />
                         <Route path="articles">
-                            <Route index element={<AdminArticleList />} />
+                            <Route
+                                index
+                                element={
+                                    <ProtectedRoute>
+                                        <AdminArticleList />
+                                    </ProtectedRoute>
+                                }
+                            />
                             <Route
                                 path="create"
-                                element={<AdminArticleEdit />}
+                                element={
+                                    <ProtectedRoute>
+                                        <AdminArticleEdit />
+                                    </ProtectedRoute>
+                                }
                             />
                             <Route
                                 path=":articleId"
-                                element={<AdminArticleEdit />}
+                                element={
+                                    <ProtectedRoute>
+                                        <AdminArticleEdit />
+                                    </ProtectedRoute>
+                                }
                             />
                         </Route>
                     </Route>
