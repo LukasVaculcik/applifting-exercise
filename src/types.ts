@@ -46,3 +46,15 @@ export interface ArticlesDataTableActionsProps {
 export interface ArticleFormProps {
     articleId: string | undefined
 }
+
+export interface ArticleBodyProps {
+    article: Article
+}
+
+export interface ArticleCardSimpleProps {
+    article: Article
+}
+
+export interface ArticleCardProps {
+    article: Article
+}

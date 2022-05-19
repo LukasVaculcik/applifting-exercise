@@ -1,31 +1,38 @@
-import { useState } from "react"
+import { useParams } from "react-router-dom"
+import ArticleBody from "../component/ArticleBody"
+import ArticleCardSimple from "../component/ArticleCardSimple"
 import ArticleInfo from "../component/ArticleInfo"
 import Comments from "../component/Comments"
+import { useAppSelector } from "../hooks"
+import { Article } from "../types"
 
 export default function ArticleDetail() {
-    // const names = ["yo"]
-    // const [likes, setLikes] = useState(0)
-
-    // function handleClick() {
-    //     setLikes(likes + 1)
-    // }
+    const { articleId } = useParams()
+    const articles: Article[] = useAppSelector((state) => state.articles.items)
+    const currentArticle: Article | undefined = useAppSelector((state) =>
+        state.articles.items.find(
+            (article: Article) => article.articleId === articleId
+        )
+    )
+    console.log(articles)
+    console.log(currentArticle)
 
     return (
         <div className="container-lg flex gap-8">
             <main className="w-70/100">
-                <article>
-                    <h1 className="textstyle-head-1 text-black mb-14">title</h1>
-                    <ArticleInfo
-                        author="name of the author here"
-                        datetime={new Date()}
-                    />
-                    <img src="" alt="" />
-                    <p>lorem ipsum</p>
-                </article>
-                <Comments />
+                {currentArticle ? (
+                    <ArticleBody article={currentArticle} />
+                ) : (
+                    <h1 className="textstyle-head-1">Article not found</h1>
+                )}
             </main>
             <aside className="w-30/100">
-                <h2 className="textstyle-head-2">Related articles</h2>
+                <h2 className="textstyle-head-2 mb-8">Related articles</h2>
+                <div className="flex flex-col gap-4">
+                    {articles.map((item, index) => (
+                        <ArticleCardSimple key={index} article={item} />
+                    ))}
+                </div>
             </aside>
         </div>
     )
