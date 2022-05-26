@@ -21,7 +21,3 @@ export const LoginReducer = createSlice({
 
 export const { setIsLogged, setErrorMessages } = LoginReducer.actions
 export default LoginReducer.reducer
-
-// Usage
-// const dispatch = useAppDispatch()
-// dispatch(refreshToken(response.data.access_token))

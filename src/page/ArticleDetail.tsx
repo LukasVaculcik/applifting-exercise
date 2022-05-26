@@ -14,8 +14,6 @@ export default function ArticleDetail() {
             (article: Article) => article.articleId === articleId
         )
     )
-    console.log(articles)
-    console.log(currentArticle)
 
     return (
         <div className="container-lg flex gap-8">

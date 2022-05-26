@@ -15,7 +15,6 @@ export default function AdminArticleList() {
     }, [])
 
     const articles: Article[] = useAppSelector((state) => state.articles.items)
-    console.log(articles)
 
     return (
         <main>

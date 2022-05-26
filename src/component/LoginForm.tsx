@@ -46,7 +46,6 @@ export default function LoginForm() {
             // Username not found
             dispatch(setErrorMessages({ name: "uname", message: errors.uname }))
         }
-        console.log
     }
 
     // Generate JSX code for error message
